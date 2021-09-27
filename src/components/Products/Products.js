@@ -24,7 +24,7 @@ const Products = ({ products }) => {
           {products.map((product) => {
             console.log(product);
             return (
-            <Grid key={product.id} item xs={12} sm={6} md={4}>
+            <Grid key={product.id} item xs={12} sm={4} md={3}>
               <ProductItem product={product} />
             </Grid>
             )

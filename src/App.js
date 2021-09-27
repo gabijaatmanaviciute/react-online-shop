@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import Footer from "./components/Layout/Footer";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from './components/Layout/Header';
-import Products from './components/Products/Products';
-import Cart from './components/Cart/Cart';
-import CartProvider from './store/CartProvider';
+import Header from "./components/Layout/Header";
+import Products from "./components/Products/Products";
+import Cart from "./components/Cart/Cart";
+import CartProvider from "./store/CartProvider";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -30,13 +31,21 @@ function App() {
   console.log(products);
 
   return (
-    <CartProvider>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <main>
-        <Products products={products} />
-      </main>
-    </CartProvider>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <CartProvider>
+            {cartIsShown && <Cart onClose={hideCartHandler} />}
+            <Header onShowCart={showCartHandler} />
+            <main>
+              <Products products={products} />
+            </main>
+          </CartProvider>
+        </Route>
+        <Route exact path="/checkout"></Route>
+      </Switch>
+      <Footer />
+    </Router>
   );
 }
 
