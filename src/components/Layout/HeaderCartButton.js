@@ -15,6 +15,14 @@ const useStyles = makeStyles({
     alignItems: "center",
     borderRadius: "25px",
   },
+  basketWrapper: {
+    flexGrow: 1,
+    justifyContent: "flex-end",
+    display: "flex",
+  },
+  customBasket: {
+    fontSize: "1.8rem",
+  },
   bump: {
     animation: "$bump 300ms ease-out",
   },
