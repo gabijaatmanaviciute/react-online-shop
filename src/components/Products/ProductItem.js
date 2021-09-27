@@ -13,20 +13,25 @@ const useStyles = makeStyles({
   customCard: {
     transition: "all 0.5s ease-in-out",
     "&:hover": {
-      transform: "scale(1.05)",
-      boxShadow: "0px 0px 10px 5px #555",
+      transform: "scale(1.02)",
+      boxShadow: "0px 0px 5px 5px #ddd",
     },
   },
   content: {
     paddingBottom: 0,
   },
   title: {
+    marginLeft: "1rem",
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
   },
   image: {
-    padding: "10px 10px 0 10px",
+    padding: "2.8rem",
+    height: "270px",
+  },
+  itemPrice: {
+    marginLeft: "1rem",
   },
 });
 
@@ -48,35 +53,32 @@ const ProductItem = (props) => {
 
   return (
     <Card className={classes.customCard}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="260"
-          className={classes.image}
-          image={props.product.media.source}
-        />
-        <CardContent className={classes.content}>
-          <Typography
-            className={classes.title}
-            gutterBottom
-            variant="h5"
-            component="h2"
-          >
-            {props.product.name}
-          </Typography>
-        </CardContent>
+      <CardMedia
+        className={classes.image}
+        component="img"
+        image={props.product.media.source}
+      />
+      <CardContent className={classes.content}>
+        <Typography
+          className={classes.title}
+          variant="h6"
+          component="h2"
+          gutterBottom
+        >
+          {props.product.name}
+        </Typography>
+        <Typography
+          className={classes.itemPrice}
+          gutterBottom
+          variant="h6"
+          component="h2"
+        >
+          {props.product.price.formatted_with_symbol}
+        </Typography>
         <CardActions>
-          <Typography
-            className={classes.basketItemPrice}
-            gutterBottom
-            variant="h5"
-            component="h2"
-          >
-            {props.product.price.formatted_with_symbol}
-          </Typography>
+          <ProductItemForm id={props.id} onAddToCart={addToCartHandler} />
         </CardActions>
-      </CardActionArea>
-      <ProductItemForm id={props.id} onAddToCart={addToCartHandler} />
+      </CardContent>
     </Card>
   );
 };

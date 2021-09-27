@@ -1,10 +1,19 @@
 import { useRef, useState } from "react";
 import Input from "../UI/Input";
-import {makeStyles} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+
 
 const useStyles = makeStyles({
-
-})
+  form: {
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+  },
+  addToCartBtn: {
+    width: "100%",
+  }
+});
 
 const ProductItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
@@ -34,7 +43,7 @@ const ProductItemForm = (props) => {
     <form className={classes.form} onSubmit={submitHandler}>
       <Input
         ref={amountInputRef}
-        label="Amount"
+        label="Amount: "
         input={{
           id: "amount_" + props.id,
           type: "number",
@@ -44,7 +53,7 @@ const ProductItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <button>Add</button>
+      <Button type="submit" variant="contained" color="primary" className={classes.addToCartBtn}>Add to Cart</Button>
       {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
     </form>
   );

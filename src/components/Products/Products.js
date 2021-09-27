@@ -7,8 +7,8 @@ import Banner from "./Banner";
 
 const useStyles = makeStyles({
   products: {
-    paddingTop: "120px",
-    paddingBottom: "30px"
+    paddingTop: "6rem",
+    paddingBottom: "2rem"
   }
 });
 
@@ -20,11 +20,11 @@ const Products = ({ products }) => {
     <Fragment>
       <Banner />
       <Container className={classes.products} id="products">
-        <Grid container spacing={4}>
+        <Grid container spacing={6}>
           {products.map((product) => {
             console.log(product);
             return (
-            <Grid key={product.id} item xs={12} sm={4} md={3}>
+            <Grid key={product.id} item xs={12} sm={6} md={3}>
               <ProductItem product={product} />
             </Grid>
             )
