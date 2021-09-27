@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './components/Layout/Header';
-import Meals from './components/Meals/AvailableMeals';
+import Products from './components/Products/Products';
 import Cart from './components/Cart/Cart';
 import CartProvider from './store/CartProvider';
 
@@ -34,7 +34,7 @@ function App() {
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
-        <Meals />
+        <Products products={products} />
       </main>
     </CartProvider>
   );
