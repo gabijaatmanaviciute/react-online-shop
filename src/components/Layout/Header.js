@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import HeaderCartButton from "./HeaderCartButton";
 import { Container } from "@material-ui/core";
 import { AppBar } from "@material-ui/core";
@@ -17,22 +16,20 @@ const useStyles = makeStyles({
   }
 });
 
-const Header = (props) => {
+const Header = ({ cartItems }) => {
   const classes = useStyles();
 
   return (
-    <Fragment>
       <AppBar position="fixed" className={classes.appbar}>
         <Container>
           <Toolbar>
             <Typography to="/" component={Link} variant="h5" className={classes.title}>
               Feed.me
             </Typography>
-            <HeaderCartButton onClick={props.onShowCart} />
+            <HeaderCartButton cartItems={cartItems} to="/basket" />
           </Toolbar>
         </Container>
       </AppBar>
-    </Fragment>
   );
 };
 

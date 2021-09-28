@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Products = ({ products }) => {
+const Products = ({ products, addProduct }) => {
   const classes = useStyles();
   if (!products.length) return <Spinner />;
   
@@ -25,7 +25,7 @@ const Products = ({ products }) => {
             console.log(product);
             return (
             <Grid key={product.id} item xs={12} sm={6} md={3}>
-              <ProductItem product={product} />
+              <ProductItem product={product} addProduct={addProduct} />
             </Grid>
             )
           }

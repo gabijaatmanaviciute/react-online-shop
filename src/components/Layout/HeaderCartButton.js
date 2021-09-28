@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import CartContext from "../../store/cart-context";
+import { useEffect, useState } from "react";
 import { ShoppingCart } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 import { Badge } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles({
   button: {
@@ -45,23 +46,17 @@ const useStyles = makeStyles({
   },
 });
 
-const HeaderCartButton = (props) => {
+const HeaderCartButton = ({cartItems}) => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
-  const cartCtx = useContext(CartContext);
 
   const classes = useStyles();
-  const { items } = cartCtx;
-
-  const numberOfCartItems = items.reduce((curNumber, item) => {
-    return curNumber + item.amount;
-  }, 0);
 
   const btnClasses = `${classes.button} ${
     btnIsHighlighted ? classes.bump : ""
   }`;
 
   useEffect(() => {
-    if (items.length === 0) {
+    if (cartItems === 0) {
       return;
     }
     setBtnIsHighlighted(true);
@@ -73,16 +68,17 @@ const HeaderCartButton = (props) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [items]);
+  }, [cartItems]);
 
   return (
     <div className={classes.basketWrapper}>
       <IconButton
         className={btnClasses}
-        onClick={props.onClick}
+        component={Link}
+        to="/basket"
         aria-label="Show basket contents"
       >
-        <Badge badgeContent={numberOfCartItems} color="secondary">
+        <Badge badgeContent={cartItems} color="secondary">
           <ShoppingCart className={classes.customBasket} />
         </Badge>
       </IconButton>
