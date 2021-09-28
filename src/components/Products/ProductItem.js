@@ -1,7 +1,9 @@
 import { Card } from "@material-ui/core";
 import { CardMedia } from "@material-ui/core";
 import { CardContent } from "@material-ui/core";
+import { CardActionArea } from "@material-ui/core";
 import { CardActions } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 
@@ -29,14 +31,16 @@ const useStyles = makeStyles({
   itemPrice: {
     marginLeft: "1rem",
   },
+  addToCartBtn: {
+    width: "100%",
+    marginBottom: "1rem",
+
+  }
 });
 
 const ProductItem = ({
-  cart,
   product,
-  addProduct,
-  updateProduct,
-  RemoveItemFromCart,
+  addProduct
 }) => {
   const classes = useStyles();
 
@@ -46,7 +50,7 @@ const ProductItem = ({
         <CardMedia
           className={classes.image}
           component="img"
-          image={props.product.media.source}
+          image={product.media.source}
         />
         <CardContent className={classes.content}>
           <Typography
@@ -55,7 +59,7 @@ const ProductItem = ({
             component="h2"
             gutterBottom
           >
-            {props.product.name}
+            {product.name}
           </Typography>
           <Typography
             className={classes.itemPrice}
@@ -63,82 +67,22 @@ const ProductItem = ({
             variant="h6"
             component="h2"
           >
-            {props.product.price.formatted_with_symbol}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      {cart && (
-        <CardActions>
-          <Typography
-            className="cart-item-price"
-            gutterBottom
-            variant="h5"
-            component="h2"
-          >
             {product.price.formatted_with_symbol}
           </Typography>
-        </CardActions>
-      )}
-      <CardActions className="actions-content">
-        {!cart && (
-          <>
-            <Typography
-              className="price"
-              gutterBottom
-              variant="h5"
-              component="h2"
-            >
-              {product.price.formatted_with_symbol}
-            </Typography>
+          <CardActions>
             <Button
-              size="large"
-              className="custom-button"
+              className={classes.addToCartBtn}
+              color="primary"
+              variant="contained"
               onClick={() => {
                 addProduct(product.id, 1);
               }}
             >
-              <ShoppingCart /> Add to cart
+              Add to cart
             </Button>
-          </>
-        )}
-        {cart && (
-          <>
-            <Button
-              size="small"
-              color="secondary"
-              variant="outlined"
-              onClick={() => {
-                RemoveItemFromCart(product.id);
-              }}
-            >
-              Remove
-            </Button>
-            <>
-              <Button
-                size="small"
-                variant="outlined"
-                className="increase-product-quantity"
-                onClick={() => {
-                  updateProduct(product.id, product.quantity + 1);
-                }}
-              >
-                +
-              </Button>
-              <Typography>&nbsp;{product.quantity}&nbsp;</Typography>
-              <Button
-                size="small"
-                color="secondary"
-                variant="outlined"
-                onClick={() => {
-                  updateProduct(product.id, product.quantity - 1);
-                }}
-              >
-                -
-              </Button>
-            </>
-          </>
-        )}
-      </CardActions>
+          </CardActions>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 };

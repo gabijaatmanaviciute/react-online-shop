@@ -1,5 +1,12 @@
+import {makeStyles} from "@material-ui/core"
+
+const useStyles = makeStyles({
+
+})
 
 const CartItem = (props) => {
+  const classes = useStyles();
+  
   const price = `$${props.price}`;
 
   return (

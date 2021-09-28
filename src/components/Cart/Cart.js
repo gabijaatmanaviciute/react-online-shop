@@ -1,20 +1,21 @@
-import Modal from '../UI/Modal';
-import CartItem from './CartItem';
+import Modal from "../UI/Modal";
+import CartItem from "./CartItem";
+import { makeStyles } from "@material-ui/core";
 
-const Cart = (props) => {
+const useStyles = makeStyles({});
+
+const Cart = () => {
+  const classes = useStyles();
 
   return (
-    <Modal onClose={props.onClose}>
-      {cartItems}
+    <Modal>
       <div className={classes.total}>
         <span>Total Amount</span>
-        <span>{totalAmount}</span>
+        <span>*totalAmount*</span>
       </div>
       <div className={classes.actions}>
-        <button className={classes['button--alt']} onClick={props.onClose}>
-          Close
-        </button>
-        {hasItems && <button className={classes.button}>Order</button>}
+        <button>Close</button>
+        <button>Order</button>
       </div>
     </Modal>
   );
