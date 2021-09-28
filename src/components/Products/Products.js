@@ -11,7 +11,7 @@ const Products = ({ products, addProduct }) => {
 
   return (
     <Fragment>
-      <Banner />
+      <Banner /> 
       <Container className={classes.products} id="products">
         <Grid container spacing={6}>
           {products.map((product) => {

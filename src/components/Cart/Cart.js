@@ -4,6 +4,8 @@ import { Button } from "@material-ui/core";
 import { Card } from "@material-ui/core";
 import { CardActions } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { KeyboardArrowLeft } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
@@ -20,46 +22,56 @@ const Cart = ({
     : "00.00";
 
   return (
-    <div className={classes.cartPage}>
-      <Card className={classes.cartPanel}>
-        {cartData.line_items.map((item) => (
-          <CartItem
-            key={item.id}
-            product={item}
-            updateProduct={updateProduct}
-            removeItemFromCart={removeItemFromCart}
-          />
-        ))}
-        <div className={classes.total}>
-          <Typography>Total Amount: </Typography>
-          <Typography className={classes.totalCost} color="primary">
-            {totalCost}
-          </Typography>
-        </div>
-        <CardActions className={classes.actions}>
-          <Button
-            variant="outlined"
-            component={Link}
-            to="/"
-            startIcon={<KeyboardArrowLeft />}
-          >
-            Back
-          </Button>
-          <Button variant="outlined" color="primary" onClick={handleEmptyCart}>
-            Empty Cart
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.checkoutBtn}
-            component={Link}
-            to="/checkout"
-          >
-            Checkout
-          </Button>
-        </CardActions>
-      </Card>
-    </div>
+    <Container className={classes.cartPage}>
+      <Grid item xs={12} sm={8} md={5}>
+        <Card className={classes.cartPanel}>
+          <Container className={classes.itemListField}>
+            {cartData.line_items.map((item) => (
+              <CartItem
+                key={item.id}
+                product={item}
+                updateProduct={updateProduct}
+                removeItemFromCart={removeItemFromCart}
+              />
+            ))}
+          </Container>
+          <div className={classes.total}>
+            <Typography>Total Amount: </Typography>
+            <Typography className={classes.totalCost} color="primary">
+              {totalCost}
+            </Typography>
+          </div>
+          <CardActions className={classes.actions}>
+            <div>
+              <Button
+                variant="outlined"
+                component={Link}
+                to="/"
+                startIcon={<KeyboardArrowLeft />}
+              >
+                Back
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={handleEmptyCart}
+              >
+                Empty Cart
+              </Button>
+            </div>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.checkoutBtn}
+              component={Link}
+              to="/checkout"
+            >
+              Checkout
+            </Button>
+          </CardActions>
+        </Card>
+      </Grid>
+    </Container>
   );
 };
 const useStyles = makeStyles({
@@ -69,7 +81,8 @@ const useStyles = makeStyles({
     marginTop: "6rem",
   },
   cartPanel: {
-    padding: "2.5rem",
+    padding: "1rem 2rem",
+
     animation: "$banner-appears 1s ease-out forwards",
   },
   "@keyframes banner-appears": {
@@ -82,10 +95,21 @@ const useStyles = makeStyles({
       transform: "translateY(0)",
     },
   },
+  itemListField: {
+    padding: 0,
+    maxHeight: "20rem",
+    overflow: "auto",
+  },
   actions: {
+    display: "flex",
+    justifyContent: "space-between",
     marginTop: "1rem",
+    '& button': {
+      margin: "0 0.5rem"
+    }
   },
   total: {
+    marginTop: "1rem",
     textAlign: "right",
   },
   totalCost: {
