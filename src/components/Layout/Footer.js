@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
   footer: {
     width: "100%",
+    marginTop: "2rem",
     padding: "10px",
     height: "120px",
     display: "flex",
@@ -19,7 +20,7 @@ const Footer = () => {
   const fullYear = date.getFullYear();
   return (
     <footer className={classes.footer}>
-      <p>All &copy; copy rights are reserved {fullYear}</p>
+      <p>All &copy; copy rights reserved {fullYear}</p>
     </footer>
   );
 };

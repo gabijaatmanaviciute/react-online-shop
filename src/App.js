@@ -28,7 +28,7 @@ function App() {
     setCartData(response.cart);
   };
 
-  const RemoveItemFromCart = async (itemId) => {
+  const removeItemFromCart = async (itemId) => {
     const response = await commerce.cart.remove(itemId);
     setCartData(response.cart);
   };
@@ -71,17 +71,11 @@ function App() {
     fetchCartData();
   }, []);
 
-  console.log(products);
+  console.log(cartData);
 
   return (
     <Router>
-      <Header
-        cartItems={cartData.total_items}
-        totalCost={
-          (cartData.subtotal && cartData.subtotal.formatted_with_symbol) ||
-          "00.00"
-        }
-      />
+      <Header cartItems={cartData.total_items} />
       <Switch>
         <Route exact path="/">
           <main>
@@ -93,7 +87,7 @@ function App() {
             cartData={cartData}
             updateProduct={updateProduct}
             handleEmptyCart={handleEmptyCart}
-            RemoveItemFromCart={RemoveItemFromCart}
+            removeItemFromCart={removeItemFromCart}
           />
         </Route>
         {/* <Route exact path="/checkout">
