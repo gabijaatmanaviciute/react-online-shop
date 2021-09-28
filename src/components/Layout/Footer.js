@@ -1,5 +1,17 @@
 import { makeStyles } from "@material-ui/core";
 
+const Footer = () => {
+  const classes = useStyles();
+  
+  const date = new Date();
+  const fullYear = date.getFullYear();
+  return (
+    <footer className={classes.footer}>
+      <p>All &copy; copy rights reserved {fullYear}</p>
+    </footer>
+  );
+};
+
 const useStyles = makeStyles({
   footer: {
     width: "100%",
@@ -12,17 +24,5 @@ const useStyles = makeStyles({
     fontSize: "18px",
   },
 });
-
-const Footer = () => {
-  const classes = useStyles();
-
-  const date = new Date();
-  const fullYear = date.getFullYear();
-  return (
-    <footer className={classes.footer}>
-      <p>All &copy; copy rights reserved {fullYear}</p>
-    </footer>
-  );
-};
 
 export default Footer;

@@ -3,6 +3,36 @@ import { Container, Typography, Button, Grid } from "@material-ui/core";
 import { KeyboardArrowRight } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core";
 
+const Banner = () => {
+  const classes = useStyles();
+  
+  return (
+    <div className={classes.banner}>
+      <Container>
+        <Grid className={classes.bannerContent} container spacing={4}>
+          <Grid item xs={12} sm={6}>
+            <Typography className={classes.title} variant="h1">
+              Welcome to Feed.me!
+            </Typography>
+            <Button
+              className={classes.bump}
+              variant="outlined"
+              color="primary"
+              href="#products"
+              endIcon={<KeyboardArrowRight />}
+            >
+              Shop Organic Products
+            </Button>
+          </Grid>
+          <Grid className={classes.brand} item sm={6}>
+            <img src={banner} alt="Healthy food products" />
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
+  );
+};
+
 const useStyles = makeStyles({
   banner: {
     paddingTop: "2rem",
@@ -63,35 +93,5 @@ const useStyles = makeStyles({
     },
   },
 });
-
-const Banner = () => {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.banner}>
-      <Container>
-        <Grid className={classes.bannerContent} container spacing={4}>
-          <Grid item xs={12} sm={6}>
-            <Typography className={classes.title} variant="h1">
-              Welcome to Feed.me!
-            </Typography>
-            <Button
-              className={classes.bump}
-              variant="outlined"
-              color="primary"
-              href="#products"
-              endIcon={<KeyboardArrowRight />}
-            >
-              Shop Organic Products
-            </Button>
-          </Grid>
-          <Grid className={classes.brand} item sm={6}>
-            <img src={banner} alt="Healthy food products" />
-          </Grid>
-        </Grid>
-      </Container>
-    </div>
-  );
-};
 
 export default Banner;

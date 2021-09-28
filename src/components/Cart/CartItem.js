@@ -1,12 +1,8 @@
-import {makeStyles} from "@material-ui/core"
-
-const useStyles = makeStyles({
-
-})
+import { makeStyles } from "@material-ui/core";
 
 const CartItem = (props) => {
   const classes = useStyles();
-  
+
   const price = `$${props.price}`;
 
   return (
@@ -26,4 +22,5 @@ const CartItem = (props) => {
   );
 };
 
+const useStyles = makeStyles({});
 export default CartItem;

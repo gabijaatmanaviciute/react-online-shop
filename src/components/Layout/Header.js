@@ -6,21 +6,11 @@ import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles({
-  appbar: {
-    width: "100%",
-  },
-  title: {
-    textDecoration: "none",
-    color: "#fff",
-  }
-});
-
 const Header = ({ cartItems }) => {
   const classes = useStyles();
-
+  
   return (
-      <AppBar position="fixed" className={classes.appbar}>
+    <AppBar position="fixed" className={classes.appbar}>
         <Container>
           <Toolbar>
             <Typography to="/" component={Link} variant="h5" className={classes.title}>
@@ -32,5 +22,15 @@ const Header = ({ cartItems }) => {
       </AppBar>
   );
 };
+
+const useStyles = makeStyles({
+  appbar: {
+    width: "100%",
+  },
+  title: {
+    textDecoration: "none",
+    color: "#fff",
+  }
+});
 
 export default Header;
