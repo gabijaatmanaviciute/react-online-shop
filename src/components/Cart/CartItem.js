@@ -1,26 +1,28 @@
 import { makeStyles } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
-const CartItem = (props) => {
+const CartItem = ({ product, updateProduct, removeItemFromCart }) => {
   const classes = useStyles();
 
-  const price = `$${props.price}`;
-
   return (
-    <li className={classes["cart-item"]}>
+    <li className={classes.cartItem}>
       <div>
-        <h2>{props.name}</h2>
-        <div className={classes.summary}>
-          <span className={classes.price}>{price}</span>
-          <span className={classes.amount}>x {props.amount}</span>
+        <h2>{product.name}</h2>
+        <div className={classes.itemSummary}>
+          {/* <Typography className={classes.itemInfo}>{product.quantity}</Typography> */}
+          {/* <Typography className={classes.amount}>{product.line_total}</Typography> */}
         </div>
       </div>
       <div className={classes.actions}>
-        <button onClick={props.onRemove}>−</button>
-        <button onClick={props.onAdd}>+</button>
+        <button>−</button>
+        <button>+</button>
       </div>
     </li>
   );
 };
 
-const useStyles = makeStyles({});
+const useStyles = makeStyles({
+
+});
+
 export default CartItem;

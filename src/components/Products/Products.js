@@ -15,7 +15,6 @@ const Products = ({ products, addProduct }) => {
       <Container className={classes.products} id="products">
         <Grid container spacing={6}>
           {products.map((product) => {
-            console.log(product);
             return (
               <Grid key={product.id} item xs={12} sm={6} md={3}>
                 <ProductItem product={product} addProduct={addProduct} />
