@@ -7,43 +7,13 @@ import { Button } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  customCard: {
-    transition: "all 0.5s ease-in-out",
-    "&:hover": {
-      transform: "scale(1.02)",
-      boxShadow: "0px 0px 5px 5px #ddd",
-    },
-  },
-  content: {
-    paddingBottom: 0,
-  },
-  title: {
-    marginLeft: "1rem",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  },
-  image: {
-    padding: "2.8rem",
-    height: "270px",
-  },
-  itemPrice: {
-    marginLeft: "1rem",
-  },
-  addToCartBtn: {
-    width: "100%",
-    marginBottom: "1rem",
-
-  }
-});
 
 const ProductItem = ({
   product,
   addProduct
 }) => {
   const classes = useStyles();
-
+  
   return (
     <Card className={classes.customCard}>
       <CardActionArea>
@@ -86,5 +56,36 @@ const ProductItem = ({
     </Card>
   );
 };
+
+const useStyles = makeStyles({
+  customCard: {
+    transition: "all 0.5s ease-in-out",
+    "&:hover": {
+      transform: "scale(1.02)",
+      boxShadow: "0px 0px 5px 5px #ddd",
+    },
+  },
+  content: {
+    paddingBottom: 0,
+  },
+  title: {
+    marginLeft: "1rem",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
+  image: {
+    padding: "2.8rem",
+    height: "270px",
+  },
+  itemPrice: {
+    marginLeft: "1rem",
+  },
+  addToCartBtn: {
+    width: "100%",
+    marginBottom: "1rem",
+
+  }
+});
 
 export default ProductItem;

@@ -3,15 +3,12 @@ import { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
 import Header from "./components/Layout/Header";
 import Cart from "./components/Cart/Cart";
-// import Checkout from "./components/Checkout/Checkout";
 import Products from "./components/Products/Products";
 import Footer from "./components/Layout/Footer";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [cartData, setCartData] = useState({});
-  // const [orderInfo, setOrderInfo] = useState({});
-  // const [orderError, setOrderError] = useState("");
 
   const fetchProducts = async () => {
     const response = await commerce.products.list();
@@ -28,7 +25,7 @@ function App() {
     setCartData(response.cart);
   };
 
-  const RemoveItemFromCart = async (itemId) => {
+  const removeItemFromCart = async (itemId) => {
     const response = await commerce.cart.remove(itemId);
     setCartData(response.cart);
   };
@@ -43,45 +40,16 @@ function App() {
     setCartData(response.cart);
   };
 
-  // const refreshCart = async () => {
-  //   const newCartData = await commerce.cart.refresh();
-  //   setCartData(newCartData);
-  // };
-
-  // const handleCheckout = async (checkoutId, orderData) => {
-  //   try {
-  //     // const incomingOrder = await commerce.checkout.capture(
-  //     //   checkoutId,
-  //     //   orderData
-  //     // );
-
-  //     setOrderInfo(orderData);
-
-  //     refreshCart();
-  //   } catch (error) {
-  //     setOrderError(
-  //       (error.data && error.data.error && error.data.error.message) ||
-  //         "An error has occurred"
-  //     );
-  //   }
-  // };
-
   useEffect(() => {
     fetchProducts();
     fetchCartData();
   }, []);
 
-  console.log(products);
+  console.log(cartData);
 
   return (
     <Router>
-      <Header
-        cartItems={cartData.total_items}
-        totalCost={
-          (cartData.subtotal && cartData.subtotal.formatted_with_symbol) ||
-          "00.00"
-        }
-      />
+      <Header cartItems={cartData.total_items} />
       <Switch>
         <Route exact path="/">
           <main>
@@ -93,17 +61,9 @@ function App() {
             cartData={cartData}
             updateProduct={updateProduct}
             handleEmptyCart={handleEmptyCart}
-            RemoveItemFromCart={RemoveItemFromCart}
+            removeItemFromCart={removeItemFromCart}
           />
         </Route>
-        {/* <Route exact path="/checkout">
-          <Checkout
-            orderInfo={orderInfo}
-            orderError={orderError}
-            cartData={cartData}
-            handleCheckout={handleCheckout}
-          />
-        </Route> */}
       </Switch>
       <Footer />
     </Router>

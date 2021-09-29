@@ -5,6 +5,45 @@ import { Badge } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
+const HeaderCartButton = ({ cartItems }) => {
+  const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
+
+  const classes = useStyles();
+
+  const btnClasses = `${classes.button} ${
+    btnIsHighlighted ? classes.bump : ""
+  }`;
+
+  useEffect(() => {
+    if (cartItems === 0) {
+      return;
+    }
+    setBtnIsHighlighted(true);
+
+    const timer = setTimeout(() => {
+      setBtnIsHighlighted(false);
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [cartItems]);
+
+  return (
+    <div className={classes.basketWrapper}>
+      <IconButton
+        className={btnClasses}
+        component={Link}
+        to="/cart"
+        aria-label="Show basket contents"
+      >
+        <Badge badgeContent={cartItems} color="secondary">
+          <ShoppingCart className={classes.customBasket} />
+        </Badge>
+      </IconButton>
+    </div>
+  );
+};
 
 const useStyles = makeStyles({
   button: {
@@ -45,45 +84,5 @@ const useStyles = makeStyles({
     },
   },
 });
-
-const HeaderCartButton = ({cartItems}) => {
-  const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
-
-  const classes = useStyles();
-
-  const btnClasses = `${classes.button} ${
-    btnIsHighlighted ? classes.bump : ""
-  }`;
-
-  useEffect(() => {
-    if (cartItems === 0) {
-      return;
-    }
-    setBtnIsHighlighted(true);
-
-    const timer = setTimeout(() => {
-      setBtnIsHighlighted(false);
-    }, 300);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [cartItems]);
-
-  return (
-    <div className={classes.basketWrapper}>
-      <IconButton
-        className={btnClasses}
-        component={Link}
-        to="/basket"
-        aria-label="Show basket contents"
-      >
-        <Badge badgeContent={cartItems} color="secondary">
-          <ShoppingCart className={classes.customBasket} />
-        </Badge>
-      </IconButton>
-    </div>
-  );
-};
 
 export default HeaderCartButton;
